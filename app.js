@@ -1,11 +1,19 @@
 const express = require("express");
+const mongoose = require("mongoose");
+const Book = require("./models/book.js");
+
+require("dotenv/config");
 
 const app = express();
 
-app.listen(3000, () => {
-  console.log("Server is running on http://localhost:3000");
-});
-
-app.get("/", (req, res) => {
-  res.send("This is Home page");
-});
+mongoose
+  .connect(process.env.DB_CONNECTION, {
+    dbName: "BooksDirectory",
+    useNewUrlParser: true,
+  })
+  .then(
+    app.listen(3000, () => {
+      console.log("Server is running on http://localhost:3000");
+    })
+  )
+  .catch((err) => console.log(err));
