@@ -23,14 +23,20 @@ mongoose
 app.set('view engine', 'ejs');
 
 // Middleware
-
-app.use('/books', booksRoutes);
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.get('/', (req, res) => {
   res.redirect('/books');
 });
 
+app.use('/books', booksRoutes);
+
 app.get('/about', (req, res) => {
   res.render('about', { title: 'About Us' });
+});
+
+app.use((req, res) => {
+  res.status(404).render('404', { title: '404' });
 });
