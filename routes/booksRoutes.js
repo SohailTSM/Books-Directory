@@ -3,7 +3,13 @@ const router = express.Router();
 const Book = require('../models/bookModel.js');
 
 router.get('/', (req, res) => {
-  res.render('index', { title: 'Books' });
+  Book.find()
+    .then((result) => {
+      res.render('index', { title: 'Books', books: result });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 router.get('/create', (req, res) => {
   res.render('create', { title: 'Create Book' });

@@ -2,6 +2,33 @@
 
 <body>
   <%- include('./partials/nav.ejs') %>
-  
+  <div class="books">
+    <h2>All Books</h2>
+    
+    <% if (books.length > 0) { %>
+    <% books.forEach(book => { %>
+    <a href="/books/<%= book._id %> ">
+      <h3><%= book.title %> </h3>
+      <ul>
+        <% book.authors.forEach((author => { %>
+        <% if (book.authors.indexOf(author) != book.authors.length - 1) { %>
+        <li><%= `${author}, ` %> </li>
+        <% } else { %>
+        <li><%= author %> </li>
+        <% }})) %>
+      </ul>
+      <ul>
+        <% book.genres.forEach((genre => { %>
+        <% if (book.genres.indexOf(genre) != book.genres.length - 1) { %>
+        <li><%= `${genre}, ` %> </li>
+        <% } else { %>
+        <li><%= genre %> </li>
+        <% }})) %>
+      </ul>
+    </a>
+    <% })} else { %>
+    <p>There are no books to display...</p>
+    <% } %>
+  </div>
   <%- include('./partials/footer.ejs') %>
 </body>
