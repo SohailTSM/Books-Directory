@@ -11,8 +11,29 @@ router.get('/', (req, res) => {
       console.log(err);
     });
 });
+
+router.post('/', (req, res) => {
+  const book = new Book(req.body);
+  book
+    .save()
+    .then((result) => res.redirect('/books'))
+    .catch((err) => console.log(err));
+});
+
 router.get('/create', (req, res) => {
   res.render('create', { title: 'Create Book' });
+});
+
+router.get('/:id', (req, res) => {
+  const id = req.params.id;
+  Book.findById(id)
+    .then((result) => {
+      res.render('details', { title: 'Book Detail', book: result });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).render('404', { title: '404' });
+    });
 });
 
 // Export

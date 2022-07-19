@@ -2,6 +2,19 @@
 
 <body>
   <%- include('./partials/nav.ejs') %>
+  <div>
+    <form action="/books" method="post">
+      <label for="title">Book Title</label>
+      <input type="text" name="title" required>
+      <label for="author">Author Name</label>
+      <input type="text" name="author">
+      <label for="genre">genre</label>
+      <input type="text" name="genre">
+      <label for="description">Description</label>
+      <textarea name="description"></textarea>
+      <button>Submit</button>
+    </form>
+  </div>
   
   <%- include('./partials/footer.ejs') %>
 </body>

@@ -22,16 +22,18 @@ mongoose
 
 app.set('view engine', 'ejs');
 
-// Middleware
+// Middlewares
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
+
+// Route Middlewares
+app.use('/books', booksRoutes);
 
 // Routes
 app.get('/', (req, res) => {
   res.redirect('/books');
 });
 
-app.use('/books', booksRoutes);
 
 app.get('/about', (req, res) => {
   res.render('about', { title: 'About Us' });

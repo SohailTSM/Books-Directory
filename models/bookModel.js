@@ -6,13 +6,13 @@ const bookSchema = new Schema({
     type: String,
     required: true,
   },
-  authors: {
-    type: Array,
-    default: ['Unknown'],
+  author: {
+    type: String,
+    default: 'Unknown',
   },
-  genres: {
-    type: Array,
-    default: ['Unknown'],
+  genre: {
+    type: String,
+    default: 'Unknown',
   },
   description: {
     type: String,
